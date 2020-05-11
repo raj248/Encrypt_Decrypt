@@ -3,10 +3,10 @@ import FileEncoder
 def StartEncode(): 
 	# encode a file/text_msg
 	# file => EncodeFile(), text_msg => EncodeText()
-	q = input('Encode file/Encode text (f/t)  : ')
-	if q=='f': 
+	q = input('Encrypt (F)ile, (T)ext : ')
+	if q=='f' or q=='F': 
 		EncodeFile()
-	elif q=='t': 
+	elif q=='t'or q=='T': 
 		EncodeText()
 	else:
 		print('Invalid Choice')
@@ -21,7 +21,7 @@ def EncodeFile():
 		msg = f.read()
 		pwd = input("password for encryption : ")
 		code = FileEncoder.Encrypt(msg,FileEncoder.EncryptionKey(FileEncoder.KeyGen(pwd)))
-	filename = input('Save as (name of new file with extension) : ')
+	filename = input('Save as : ') + '.txt'
 	SaveAs(code,filename)
 
 def EncodeText():
@@ -29,24 +29,23 @@ def EncodeText():
 	# append => filename, save_as(text,filename,open_type = 'a')
 	# end append => append_more/home
 	# create => filename, save_as(text,filename)
-	# BONUS HINT: solution is in the code and this project includes code
-	text = input('Message : ') 
+#	text = input('Message : ') + "\n"
+	print('',end='\r')
+	filename = input('Append messeges to : ') + '.txt'
 	pwd = input('password for encryption : ')
-	open_type = input('append/create (a/c) : ')
-	filename = input('Filename : ') + '.txt'
-	code = FileEncoder.Encrypt(text,FileEncoder.EncryptionKey(FileEncoder.KeyGen(pwd)))
-	if open_type=='a':
-		while True:
-			SaveAs(code,filename,open_type)
-			q = input('Continue_Append/Home (a/h) : ')
-			if q=='h':
-				break
-			text = input('Message : ')
+	while True:
+		text = input('Message : ') + "\n"
+		q = input('(C)ontinue, (H)ome : ')
+		if q=='h' or q =='H':
 			code = FileEncoder.Encrypt(text,FileEncoder.EncryptionKey(FileEncoder.KeyGen(pwd)))
-	elif open_type=='c':
-		SaveAs(code,filename)
-	else:
-		print("Invalid open_type")
+			SaveAs(code,filename,'a')
+			break
+		elif q=='c'or q=='C':
+			code = FileEncoder.Encrypt(text,FileEncoder.EncryptionKey(FileEncoder.KeyGen(pwd)))
+			SaveAs(code,filename,'a')
+		else:
+			print("\nInvalid choice, last message cannot be appended\n\n")
+			break
 
 def StartDecode():
 	# param<filename,password>
@@ -54,11 +53,11 @@ def StartDecode():
 	# display => print(msg)
 	# save_as(msg,new_filename)
 	msg = DecodeFile()
-	q = input('display/save_as (d/s) : ')
-	if q=='d':
+	q = input('(D)isplay, (S)ave_as : ')
+	if q=='d' or q=='D':
 		print('\n\n'+ msg + '\n')
-	elif q=='s':
-		filename = input("Save as (name of new file with extension) : ")
+	elif q=='s'or q=='S':
+		filename = input("Save as : ") + '.txt'
 		SaveAs(msg,filename)
 	
 
