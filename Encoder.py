@@ -8,8 +8,7 @@ def main():
 		EncoderUI.StartEncode()
 	elif q=='d':
 		EncoderUI.StartDecode()
-	if q=='h'or'help':
-		pass
+'''	if q=='h'or'help':
 		# print readme.txt
 		try:
 			with open('readme.txt','r') as f:
@@ -18,7 +17,7 @@ def main():
 			print('\nSorry you don\'t have the readme file for help support\n')
 	elif q=='q':
 		quit()
-	else:
+'''	else:
 		('Invalid Choice')
 	main()
 
