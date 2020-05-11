@@ -1,3 +1,0 @@
-This is a ignorable file
-
-it is ignored by git
