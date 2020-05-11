@@ -1,4 +1,4 @@
-INTRODUCTION-----------------------------------
+INTRODUCTION----------------------------------
 
 ED_1 is an console application written in python programming language.
 
